@@ -1,0 +1,115 @@
+*{
+  font-family: 'Raleway', sans-serif;
+}
+body, html{
+  margin: 0 auto;
+
+}
+.container{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 1000px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+h1, h2{
+  text-align: center;
+  font-weight: 400;
+}
+
+.input-container{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.input-container label{
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.color-input, button{
+  width: 100%;
+  outline: none;
+  border: 2px solid #555;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: bold;
+}
+
+.color-input{
+  height: 200px;
+}
+
+.color-input:hover{
+  cursor: pointer;
+}
+
+button{
+  font-size: 1em;
+  padding: 5px;
+  margin: 10px 0;
+  transition: all .3s ease;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+  border: none;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 2px solid #555;
+  outline: none;
+
+  border-radius: 5px;
+}
+
+#saved-colors{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+
+.color-container{
+  margin: 15px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid #555;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.color-swatch{
+  height: 150px;
+  border-bottom: 2px solid #555;
+}
