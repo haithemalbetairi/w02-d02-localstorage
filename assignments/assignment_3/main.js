@@ -2,7 +2,7 @@ $(document).ready(function (){
   console.log('JS WORKING!');
 
   // a place to store all of the saved colors
-  const savedColors = [];
+  var savedColors = [];
 
   // ---------------------------------------------------------------------------
   // Part 1 - retrieveColors
@@ -10,8 +10,10 @@ $(document).ready(function (){
   //   renderSavedColors
   // ---------------------------------------------------------------------------
   function retrieveColors(){
-
-
+    if(localStorage.getItem('savedColors')) {
+      savedColors = JSON.parse(localStorage.getItem('savedColors'))
+      renderSavedColors();
+    }
   }
 
 
@@ -23,8 +25,15 @@ $(document).ready(function (){
   // This function is already set up to run when the 'save' button is clicked.
   // it will pass the hex number of the color input as an argument
   function makeCall(hex) {
-
-
+    $.ajax({
+      method: 'GET',
+      url: 'http://www.thecolorapi.com/id?hex=' + hex,
+      success: parseData,
+      error: function(reply) {
+        console.log('error from colors api')
+        console.log(reply)
+      }
+    })
   }
 
 
@@ -35,8 +44,16 @@ $(document).ready(function (){
   //   localStorage
   // ---------------------------------------------------------------------------
   function parseData(data) {
-    
+    var color = {
+      hex: data.hex.value,
+      rgb: data.rgb.value,
+      hsl: data.hsl.value,
+      cmyk: data.cmyk.value
+    }
 
+    savedColors.push(color);
+    localStorage.setItem('savedColors', JSON.stringify(savedColors))
+    renderSavedColors();
   }
 
 
@@ -49,6 +66,15 @@ $(document).ready(function (){
   function renderSavedColors() {
     var $saved = $('#saved-colors').empty();
     
+    savedColors.forEach(function(color) {
+      var $container = $('<div>').addClass('color-container').appendTo($saved);
+      var $swatch = $('<div>').addClass('color-swatch').css('background-color', color.hex).appendTo($container)
+      var colorKeys = Object.keys(color)
+
+      colorKeys.forEach(function(format) {
+        $('<p>').text(color[format]).appendTo($container)
+      })
+    })
 
   }
 
